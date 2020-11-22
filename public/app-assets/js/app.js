@@ -26,7 +26,7 @@ function googleLogin(){
             userInfoPage(user);
         })
         .catch(function(error){
-            window.location = "/user-lock-screen.html";
+            //window.location = "/user-lock-screen.html";
             console.log(error);
         })
 }
