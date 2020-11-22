@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="loading" lang="en">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Test de programador, banco Bice.">
+    <title>Bice Lab | Test programador</title>
+
+    <!-- BEGIN: Firebase-->
+    <script defer src="/__/firebase/8.1.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.1.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <!-- END: Firebase-->
+    
+    <link rel="apple-touch-icon" href="../../../app-assets/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/favicon/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/chartist-js/chartist.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/charts-chartist.css">
+    <link rel="stylesheet" type="text/css"
+        href="../app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../app-assets/vendors/data-tables/css/select.dataTables.min.css">
+
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/materialize.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/page-contact.css">
+    <!-- END: Page Level CSS-->
+
+</head>
+<!-- END: Head-->
+
+<body >
+
+
+    <!-- BEGIN: Page Main-->
+    <div>
+        <div class="row">
+            <div class="content-wrapper-before blue-grey lighten-5"></div>
+            <div class="col s12">
+                <div class="container">
+                    <!-- Contact Us -->
+                    <div id="contact-us" class="section">
+                        <div class="app-wrapper">
+                            <div class="contact-header ml-0 mr-0 mt-0">
+                                <div class="row contact-us ml-0 mr-0">
+                                    <div class="col s12 m12 l3 sidebar-title">
+                                        <h5 class="m-0"><i class="material-icons person vertical-text-top">person</i> <span id="nomusuario">Jhon Doe</span></h5>
+                                        <p class="m-0 font-weight-500 mt-0 text-ellipsis"><span id="emausuario">jhon@doe.com</span></p>
+
+                                    </div>
+                                    <div class="col s12 m12 l9 form-header">
+                                        <h6 class="form-header-text"><i class="material-icons">payments</i>Administra tus compras en dólares.</h6>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            
+
+                            <!-- inicio sidebar -->
+                            <div id="sidebar-list" class="row contact-sidenav ml-0 mr-0">
+                                <div class="col s12 m12 l3">
+                                    <!-- Sidebar Area Starts -->
+                                    <div class="sidebar-left sidebar-fixed">
+                                        <div class="sidebar">
+                                            <div class="sidebar-content">
+                                                <div class="sidebar-menu list-group position-relative">
+                                                    <div class="sidebar-list-padding app-sidebar contact-app-sidebar" id="contact-sidenav">
+                                                        <ul class="contact-list display-grid">
+                                                            <li>
+                                                                <h6 class="m-5"><b>Indicadores Económicos</b></h5>
+                                                            </li>
+                                                            <li>
+                                                                <h7 class="mt-5 line-height"><span id="indnomdolar"></span> : <span id="indvaldolar"></span></h6>
+                                                            </li>
+                                                            <li>
+                                                                <h7 class="mt-5 line-height"><span id="indnomeuro"></span> : <span id="indvaleuro"></span></h6>
+                                                            </li>
+                                                            <li>
+                                                                <h7 class="mt-5 line-height"><span id="indnomuf"></span> : <span id="indvaluf"></span></h6>
+                                                            </li>
+                                                            <li>
+                                                                <hr class="mt-5">
+                                                            </li>
+                                                        </ul>
+                                                        <div class="row">
+
+                                                            <div class="col s12 phone mt-4 p-0">
+                                                                <div class="col s2 m2 l2"><i class="material-icons"> call </i></div>
+                                                                <div class="col s10 m10 l10">
+                                                                    <p class="m-0">(800) 900-200-333</p>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col s12 mail mt-4 p-0">
+                                                                <div class="col s2 m2 l2"><i class="material-icons"> mail_outline </i></div>
+                                                                <div class="col s10 m10 l10">
+                                                                    <p class="m-0">ayudaonline@bice.cl</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- fin sidebar -->
+
+
+                                <div id="idChart1" class="col s12 m12 l9 contact-form margin-top-contact">
+                                    <div class="row">
+                                        <div class="seaction" id="materialize-chartist">
+                                            <div id="ct1-chart" class="ct-chart card">
+                                                <div class="card-content">
+                                                    <h4 class="card-title">Compras en los últimos días</h4>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="tablax" class="card card card-default scrollspy">
+                                            <div class="card-content">
+                                                <h4 class="card-title">Gasto en pesos por tipo de compra</h4>
+                                                <div class="row">
+
+                                                    <div class="col s12">
+                                                        <table id="tablaCompras" class="display">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Filtro</th>
+                                                                    <th>Dólares</th>
+                                                                    <th>Pesos</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody  id="tbody_tabla">
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                                
+
+
+                                <!-- formulario contacto -->
+                                <div id="idFormContacto" style="visibility: hidden;" class="col s12 m12 l9 contact-form margin-top-contact">
+                                    <div class="row">
+                                        <form class="col s12">
+                                            <div class="row">
+                                                <div class="input-field col m6 s12">
+                                                    <input id="name" type="text" class="validate">
+                                                    <label for="name">Your Name</label>
+                                                </div>
+                                                <div class="input-field col m6 s12">
+                                                    <input id="email" type="text" class="validate">
+                                                    <label for="email">Your e-mail</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12 width-100">
+                                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                                    <label for="textarea1">Textarea</label>
+                                                    <a class="waves-effect waves-light btn" id="btn">Send</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- fin formulario contacto-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="content-overlay"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Page Main-->
+
+    <!-- BEGIN: Footer-->
+
+    <footer class="page-footer footer footer-static footer-light navbar-border navbar-shadow">
+        <div class="footer-copyright">
+            <div class="container"><span class="right hide-on-small-only">Test de programador.</span></div>
+        </div>
+    </footer>
+
+    <!-- END: Footer-->
+
+
+    <!--  JS-->
+    <script src="../../../app-assets/js/vendors.min.js"></script>
+
+    <script src="../app-assets/vendors/data-tables/js/jquery.dataTables.min.js"></script>
+    <script src="../app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../app-assets/vendors/data-tables/js/dataTables.select.min.js"></script>
+
+    <script src="../../../app-assets/vendors/chartist-js/chartist.min.js"></script>
+    <script src="../../../app-assets/js/scripts/charts-chartist.js"></script>
+
+    <script defer src="../../../app-assets/js/app.js"></script>
+    <!-- JS-->
+</body>
+
+</html>

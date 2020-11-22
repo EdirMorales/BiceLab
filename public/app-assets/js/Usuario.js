@@ -1,0 +1,9 @@
+class Usuario {
+
+    constructor(displayName,email,photoURL,uid){
+        this.displayName = displayName;
+        this.email = email;
+        this.photoURL = photoURL;
+        this.uid = uid;
+    }
+}
