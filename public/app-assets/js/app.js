@@ -1,16 +1,11 @@
-
+var dolarHoy = 0;
 
 document.addEventListener("DOMContentLoaded", event =>{
     const app = firebase.app();
     getIndicadores();
     loadDataGrafico();
-    fillTablaCompras();
+    
 });
-
-document.getElementById("btn").addEventListener("click", function(){
-    getIndicadores();
-});
-
 
 // verificacion estado de usuario
 firebase.auth().onAuthStateChanged(function(user) {
@@ -24,19 +19,22 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function googleLogin(){
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(result => {
-        const user = result.user;
-        userInfoPage(user);
-    })
-    .catch(console.log)
+
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithRedirect(provider).then(result => {
+            const user = result.user;
+            userInfoPage(user);
+        })
+        .catch(function(error){
+            window.location = "/user-lock-screen.html";
+            console.log(error);
+        })
 }
 
 function userInfoPage(user){
     document.getElementById("nomusuario").innerText = user.displayName;
     document.getElementById("emausuario").innerText = user.email;
 }
-
 
 function getIndicadores(){
     var url = 'https://www.indecon.online/last';
@@ -55,7 +53,10 @@ function getIndicadores(){
         document.getElementById("indvaleuro").innerText = response.euro.value;
         document.getElementById("indnomuf").innerText = response.uf.name;
         document.getElementById("indvaluf").innerText = response.uf.value;
-        
+
+        dolarHoy = response.dolar.value;
+
+        fillTablaCompras();
       });
 }
 
@@ -146,14 +147,16 @@ function fillTablaCompras(){
                     content = "";
                     content += '<tr><td>' + element[0] + '</td>';
                     content += '<td>' + element[1].toFixed(2) + '</td>';
-                    content += '<td>' + element[2].toFixed(0) + '</td>';
+                    content += '<td>' + (element[1].toFixed(2) * dolarHoy).toFixed(0) + '</td>';
         
                     $('#tablaCompras').append(content);
         
-        
+                    /*
                     $('#tablaCompras').DataTable({
                         "responsive": true,
+                        "sDom":"ltipr"
                     });
+                    */
     
                 })
     
