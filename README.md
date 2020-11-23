@@ -37,7 +37,7 @@ const key = "-----BEGIN PRIVATE KEY-----\x5LqgVNpms\n-----END PRIVATE KEY-----\n
 const projectId = "bicelab-6a6da";
 ```
 
-Se deben copiar los datos a la hoja de google con nombre "Hoja1". Al ejectuar la secuencia se creará la colección Movimientos automaticamente. Los datos utilizados se encuentran [acá][link5]. 
+Se deben copiar los datos a la hoja de google con nombre "Hoja1". Al ejectuar la secuencia se creará la colección Movimientos automaticamente. Los datos de prueba utilizados se encuentran [acá][link5]. 
 
 # Control de calidad
 
