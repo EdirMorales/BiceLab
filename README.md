@@ -10,6 +10,7 @@ El IDE utilizado para el desarrollo es Visual Code en conjunto con NodeJs y el l
 
 La web se encuentra disponible para visualización [acá][link6]
 
+
 # Instalación
 
 ### Firebase
@@ -49,6 +50,8 @@ Los test unitarios para cada funcionalidad están detallados en cada uno de los 
 | ------ | ------ |
 | Ingresar nuevo filtro | [calidad/TU_nuevoFiltro.md][link1] |
 | Ingresar nuevo gasto | [calidad/TU_nuevoGasto.md][link2] |
+
+*no compatible con IE
 
 [//]: # (LINKS README)
 [link1]: <https://github.com/EdirMorales/BiceLab/tree/master/calidad/TU_nuevoFiltro.md>
