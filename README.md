@@ -9,9 +9,32 @@ El IDE utilizado para el desarrollo es NodeJs y el lenguaje Javascript.
 # Instalación
 
 ### Firebase
-La aplicación utiliza la nube GCP con las herramientas de Firebase como back. Para levantar la web es necesario contar con el servicio de Firebase en plan "Blaze", las instrucciones para crear una instancia de Firebase se pueden encontrar [acá][link3]. Se debe instalar el CLI (NodeJS) para luego inicializar firebase incluyendo la opción de hosting.
+La aplicación utiliza la nube GCP con las herramientas de Firebase como back. Para levantar la web es necesario contar con el servicio de Firebase en plan "Blaze". Las instrucciones para crear una base de datos Cloud Firestore se pueden encontrar [acá][link3].
+
+Se debe instalar el CLI (NodeJS) y GIT para obtener una copia de este repositorio. Luego se puede continuar con la instalación de Firebase por medio de npm en la consola de Node JS.
+
+Inicializar firebase incluyendo la opción de hosting. 
+```sh
+$ npm install -g firebase-tools
+$ firebase init
+```
+
+Durante la inicialización de Firebase, se selecciona el proyecto creado anteriormente y en las opciónes se debe seleccionar Firestore y Hosing. El instalador sobreescribirá los archivos de comunicación y seguridad necesarios. En este punto ya se puede realizar un "deploy" hacia Firebase.
+
+```sh
+$ firebase deploy
+```
+
 ### Datos de prueba
-Para esta aplicación creé datos de prueba basados en mis compras en dolares. Para poder subir estos datos a Firebase (Firestore), utilicé una hoja de cálculo en google drive con una secuencia de comandos que se encuentra [acá][link4]. Los datos utilizados se encuentran [acá][link5]
+Para esta aplicación creé datos de prueba basados en mis compras en dolares. Para poder subir estos datos a Firebase (Firestore), utilicé una hoja de cálculo en google drive con una secuencia de comandos que se encuentra [acá][link4]. Se deben configurar los datos de autentificación para que google sheets tenga acceso a Firestore, al ejecutar el script, se solicitarán la aprovación por cuenta google del usuario.
+
+```sh
+const email = "xxxxxx@bicelab-6a6da.iam.gserviceaccount.com";
+const key = "-----BEGIN PRIVATE KEY-----\x5LqgVNpms\n-----END PRIVATE KEY-----\n";
+const projectId = "bicelab-6a6da";
+```
+
+Se deben copiar los datos a la hoja de google con nombre "Hoja1". Al ejectuar la secuencia se creará la colección Movimientos automaticamente. Los datos utilizados se encuentran [acá][link5]. 
 
 # Control de calidad
 
@@ -27,6 +50,8 @@ Los test unitarios para cada funcionalidad están detallados en cada uno de los 
 [//]: # (LINKS README)
 [link1]: <https://github.com/EdirMorales/BiceLab/tree/master/calidad/TU_nuevoFiltro.md>
 [link2]: <https://github.com/EdirMorales/BiceLab/tree/master/calidad/TU_nuevoGasto.md>
-[link3]: <https://firebase.google.com/docs/web/setup?hl=es-419#node.js-apps>
+[link3]: <https://firebase.google.com/docs/firestore/quickstart#node.js>
 [link4]: <https://github.com/EdirMorales/BiceLab/blob/master/datos/toFirestore.gs>
 [link5]: <https://github.com/EdirMorales/BiceLab/blob/master/datos/compras.xlsx>
+
+
