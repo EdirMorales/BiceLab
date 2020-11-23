@@ -1,4 +1,6 @@
 var dolarHoy = 0;
+var arrayMail = [];
+arrayMail.push(["Filtro","Pesos","Dolar"]);
 
 document.addEventListener("DOMContentLoaded", event =>{
     const app = firebase.app();
@@ -34,6 +36,15 @@ function googleLogin(){
 function userInfoPage(user){
     document.getElementById("nomusuario").innerText = user.displayName;
     document.getElementById("emausuario").innerText = user.email;
+
+    /*
+    document.getElementById("name").value = user.displayName;
+    document.getElementById("email").value = user.email;
+
+    $(function() {
+        M.updateTextFields();
+    });
+    */
 }
 
 function getIndicadores(){
@@ -60,7 +71,6 @@ function getIndicadores(){
       });
 }
 
-
 function loadDataGrafico() {
     const db = firebase.firestore();
     var labelsArray = [];
@@ -68,7 +78,7 @@ function loadDataGrafico() {
     ultimaFecha = "";
     ultimoMonto = 0;
 
-    db.collection("Movimientos/").orderBy("fecha").limit(15).get().then(function (querySnapshot) {
+    db.collection("Movimientos/").orderBy("fecha","desc").limit(20).get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
             var item = doc.data();
 
@@ -119,8 +129,6 @@ function fillTablaCompras(){
             arraySimpleFiltros.push(val.filtro);
         });
 
-        
-
         db2.collection("Movimientos/").orderBy("fecha").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var val = doc.data();
@@ -135,11 +143,15 @@ function fillTablaCompras(){
 
 
             if ( $.fn.DataTable.isDataTable('#tablaCompras') ){
-        
+                alert("acaaaa");
                 var table = $('#tablaCompras').DataTable();
                 table.clear();
                 table.destroy();
             }
+
+            var table = $('#tablaCompras').DataTable();
+            table.clear();
+            table.destroy();
     
             if (!$.fn.DataTable.isDataTable('#tablaCompras')) {
     
@@ -148,6 +160,8 @@ function fillTablaCompras(){
                     content += '<tr><td>' + element[0] + '</td>';
                     content += '<td>' + element[1].toFixed(2) + '</td>';
                     content += '<td>' + (element[1].toFixed(2) * dolarHoy).toFixed(0) + '</td>';
+
+                    arrayMail.push([element[0], element[1].toFixed(2), (element[1].toFixed(2) * dolarHoy).toFixed(0)]);
         
                     $('#tablaCompras').append(content);
         
@@ -157,17 +171,70 @@ function fillTablaCompras(){
                         "sDom":"ltipr"
                     });
                     */
-    
                 })
-    
             }
-
         });
-        //console.log(arrayFiltros);
-        //console.log(cuantos);
-
     });
+}
 
 
-      
+  
+exportToCsv = function() {
+    var Results = arrayMail;
+
+    var CsvString = '"sep=,"\r\n';
+    Results.forEach(function(RowItem, RowIndex) {
+      RowItem.forEach(function(ColItem, ColIndex) {
+        CsvString += ColItem + ',';
+      });
+      CsvString += "\r\n";
+    });
+    CsvString = "data:application/csv," + encodeURIComponent(CsvString);
+   var x = document.createElement("A");
+   x.setAttribute("href", CsvString );
+   x.setAttribute("download","somedata.csv");
+   document.body.appendChild(x);
+   x.click();
+}
+
+
+guardarGasto = function(){
+
+    var monto = document.getElementById("inputMonto").value;
+    var descripcion = document.getElementById("inputDescripcion").value;
+
+    if(monto!="" && descripcion != ""){
+        const db = firebase.firestore();
+        var ahora = firebase.firestore.Timestamp.now();
+
+        db.collection("Movimientos").add({
+            detalle: descripcion,
+            fecha: ahora,
+            monto: parseFloat(monto)
+        }).then(function(){
+            document.getElementById("inputMonto").value = "";
+            document.getElementById("inputDescripcion").value = "";
+            fillTablaCompras();
+        }).catch(function(error) {
+            console.error("Error adding document: ", error);
+        })
+    }
+}
+
+guardarFiltro = function(){
+
+    var filtro = document.getElementById("inputFiltro").value;
+
+    if(filtro != ""){
+        const db = firebase.firestore();
+
+        db.collection("Filtros").add({
+            filtro: filtro,
+        }).then(function(){
+            document.getElementById("inputFiltro").value = "";
+            fillTablaCompras();
+        }).catch(function(error) {
+            console.error("Error adding document: ", error);
+        })
+    }
 }

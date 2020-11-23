@@ -56,17 +56,15 @@
                                         <p class="m-0 font-weight-500 mt-0 text-ellipsis"><span id="emausuario">jhon@doe.com</span></p>
 
                                     </div>
-                                    <div class="col s12 m12 l9 form-header">
-                                        <h6 class="form-header-text"><i class="material-icons">payments</i>Administra tus compras en dólares.</h6>
+                                    <div class="col s12 m12 l9 card-content">
+                                        <h5><i class="material-icons vertical-text-top">payments</i>Administra tus compras en dólares.</h6>
                                     </div>
                                 </div>
-                                
                             </div>
 
-                            
 
                             <!-- inicio sidebar -->
-                            <div id="sidebar-list" class="row contact-sidenav ml-0 mr-0">
+                            <div id="sidebar-list" class="row contact-sidenav ml-0 mr-0 mt-0">
                                 <div class="col s12 m12 l3">
                                     <!-- Sidebar Area Starts -->
                                     <div class="sidebar-left sidebar-fixed">
@@ -118,8 +116,10 @@
                                 <!-- fin sidebar -->
 
 
-                                <div id="idChart1" class="col s12 m12 l9 contact-form margin-top-contact">
+                                <div id="idChart1" class="col s12 m12 l9">
                                     <div class="row">
+
+
                                         <div class="seaction" id="materialize-chartist">
                                             <div id="ct1-chart" class="ct-chart card">
                                                 <div class="card-content">
@@ -128,6 +128,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <div id="tablax" class="card card card-default scrollspy">
                                             <div class="card-content">
@@ -147,51 +148,64 @@
 
                                                             </tbody>
                                                         </table>
+                                                        
                                                     </div>
+                                                </div>
+                                                <div class="row mt-2 ml-1">
+                                                    <a class="waves-effect waves-light btn" id="btnReporte" onclick="exportToCsv()">Exportar</a>
                                                 </div>
                                             </div>
                                         </div>
+                                        
+
+                                        <!-- formulario -->
+                                        <div class="col s12 m12 l12 card">
+                                                <div class="card-content">
+                                                    <h6 class="card-title">Ingresar nuevo filtro</h6>
+                                                        <form class="col s12 ">
+                                                            <div class="row">
+                                                                <div class="input-field col m12 s12">
+                                                                    <input id="inputFiltro" type="text" class="validate">
+                                                                    <label for="inputFiltro">Texto filtro</label>
+                                                                    <a class="waves-effect waves-light btn" id="btnFiltro" onclick="guardarFiltro()">Guardar</a>
+                                                                </div>
+
+                                                            </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                        <!-- fin formulario -->
+
+                                        <!-- formulario -->
+                                        <div class="col s12 m12 l12 card">
+                                            <div class="card-content">
+                                                <h6 class="card-title">Ingresar nuevo gasto</h6>
+                                                    <form class="col s12 ">
+                                                        <div class="row">
+                                                            <div class="input-field col m8 s12">
+                                                                <input id="inputDescripcion" type="text" class="validate">
+                                                                <label for="inputDescripcion">Descripción</label>
+                                                                <a class="waves-effect waves-light btn" id="btnMail" onclick="guardarGasto()">Guardar</a>
+                                                            </div>
+                                                            <div class="input-field col m4 s12">
+                                                                <input id="inputMonto" type="number" class="validate">
+                                                                <label for="inputMonto">Monto</label>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                        </div>
+                                        <!-- fin formulario -->
+
+
 
                                     </div>
                                 </div>
-
-
-
-                                
-
-
-                                <!-- formulario contacto -->
-                                <div id="idFormContacto" style="visibility: hidden;" class="col s12 m12 l9 contact-form margin-top-contact">
-                                    <div class="row">
-                                        <form class="col s12">
-                                            <div class="row">
-                                                <div class="input-field col m6 s12">
-                                                    <input id="name" type="text" class="validate">
-                                                    <label for="name">Your Name</label>
-                                                </div>
-                                                <div class="input-field col m6 s12">
-                                                    <input id="email" type="text" class="validate">
-                                                    <label for="email">Your e-mail</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-field col s12 width-100">
-                                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                                    <label for="textarea1">Textarea</label>
-                                                    <a class="waves-effect waves-light btn" id="btn">Send</a>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- fin formulario contacto-->
-
 
                             </div>
                         </div>
                     </div>
-                    
-                    
+
                 </div>
                 <div class="content-overlay"></div>
             </div>
