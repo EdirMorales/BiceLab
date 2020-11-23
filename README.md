@@ -15,3 +15,7 @@ Los test unitarios están detallados en cada uno de los archivos indicados a con
 | Ingresar nuevo filtro | [calidad/TU_nuevoFiltro.md][PlDb] |
 | Ingresar nuevo gasto | [calidad/TU_nuevoGasto.md][PlGh] |
 | Exportar planilla gastos | [calidad/TU_planillaGastos.md][PlGd] |
+
+
+
+[PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
