@@ -30,7 +30,7 @@ $ firebase deploy
 ```
 
 ### Datos de prueba
-Para esta aplicación creé datos de prueba basados en mis compras en dolares. Para poder subir estos datos a Firebase (Firestore), utilicé una hoja de cálculo en google drive con una secuencia de comandos que se encuentra [acá][link4]. Se deben configurar los datos de autentificación para que google sheets tenga acceso a Firestore, al ejecutar el script, se solicitarán la aprovación por cuenta google del usuario.
+Para esta aplicación creé datos de prueba basados en mis compras en dolares. Para poder subir estos datos a Firebase (Firestore), utilicé una hoja de cálculo en google drive con una secuencia de comandos que se encuentra [acá][link4]. Se deben configurar los datos de autentificación para que google sheets tenga acceso a Firestore, al ejecutar el script, se solicitará la aprovación por cuenta google del usuario.
 
 ```sh
 const email = "xxxxxx@bicelab-6a6da.iam.gserviceaccount.com";
