@@ -6,7 +6,7 @@ He creado esta web, para poder tener una visión simple y rápida de los gastos 
 
 La web permite visualizar en un gráfico los montos totales diarios de los últimos dias, totalizar gastos específicos en una tabla, con la posiblidad de añadir filtros adicionales. La tabla puede ser exportada a un archivo excel y adicionalmente se pueden agregar gastos manualmente.
 
-El IDE utilizado para el desarrollo es NodeJs y el lenguaje Javascript.
+El IDE utilizado para el desarrollo es Visual Code en conjunto con NodeJs y el lenguaje para el front es Javascript.
 
 La web se encuentra disponible para visualización [acá][link6]
 
@@ -15,15 +15,14 @@ La web se encuentra disponible para visualización [acá][link6]
 ### Firebase
 La aplicación utiliza la nube GCP con las herramientas de Firebase como back. Para levantar la web es necesario contar con el servicio de Firebase en plan "Blaze". Las instrucciones para crear una base de datos Cloud Firestore se pueden encontrar [acá][link3].
 
-Se debe instalar el CLI (NodeJS) y GIT para obtener una copia de este repositorio. Luego se puede continuar con la instalación de Firebase por medio de npm en la consola de Node JS.
+Se debe instalar [Visual Code][linkVC], [Node Js][linkNJ] y [GIT][linkGIT] para obtener una copia de este repositorio. Luego se puede continuar con la instalación de Firebase por medio de npm en la consola de VC.
 
-Inicializar firebase incluyendo la opción de hosting. 
 ```sh
 $ npm install -g firebase-tools
 $ firebase init
 ```
 
-Durante la inicialización de Firebase, se selecciona el proyecto creado anteriormente y en las opciónes se debe seleccionar Firestore y Hosing. El instalador sobreescribirá los archivos de comunicación y seguridad necesarios. En este punto ya se puede realizar un "deploy" hacia Firebase.
+Durante la inicialización de Firebase, se selecciona el proyecto creado anteriormente y en las opciones se debe seleccionar Firestore y Hosing. El instalador sobreescribirá los archivos de comunicación y seguridad necesarios. En este punto ya se puede realizar un "deploy" hacia Firebase.
 
 ```sh
 $ firebase deploy
@@ -58,3 +57,6 @@ Los test unitarios para cada funcionalidad están detallados en cada uno de los 
 [link4]: <https://github.com/EdirMorales/BiceLab/blob/master/datos/toFirestore.gs>
 [link5]: <https://github.com/EdirMorales/BiceLab/blob/master/datos/compras.xlsx>
 [link6]: <https://bicelab-6a6da.web.app/>
+[linkVC]: <https://code.visualstudio.com/download>
+[linkNJ]: <https://nodejs.org/es/download/>
+[linkGIT]: <https://git-scm.com/downloads>
