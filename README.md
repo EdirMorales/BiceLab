@@ -4,7 +4,11 @@
 
 He creado esta web, para poder tener una visión simple y rápida de los gastos que he realizado en compras internacionales (en dólares) para tiendas especificas como AMAZON, ALIEXPRESS u otras. La intención NO es administrar los gastos de mi presupuesto mensual, si no, supervisar los montos de manera rápida, para detectar cobros indebidos sin tener que revisar transacción por transacción. 
 
+La web permite visualizar en un gráfico los montos totales diarios de los últimos dias, totalizar gastos específicos en una tabla, con la posiblidad de añadir filtros adicionales. La tabla puede ser exportada a un archivo excel y adicionalmente se pueden agregar gastos manualmente.
+
 El IDE utilizado para el desarrollo es NodeJs y el lenguaje Javascript.
+
+La web se encuentra disponible para visualización [acá][link6]
 
 # Instalación
 
@@ -53,5 +57,4 @@ Los test unitarios para cada funcionalidad están detallados en cada uno de los 
 [link3]: <https://firebase.google.com/docs/firestore/quickstart#node.js>
 [link4]: <https://github.com/EdirMorales/BiceLab/blob/master/datos/toFirestore.gs>
 [link5]: <https://github.com/EdirMorales/BiceLab/blob/master/datos/compras.xlsx>
-
-
+[link6]: <https://bicelab-6a6da.web.app/>
