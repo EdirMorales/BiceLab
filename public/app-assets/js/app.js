@@ -73,6 +73,53 @@ function getIndicadores(){
 
 function loadDataGrafico() {
     const db = firebase.firestore();
+
+    var result = [];
+    var arrayTotal = [];
+    var labelsArray = [];
+    var arrayValores = [];
+
+    db.collection("Movimientos/").orderBy("fecha","desc").limit(20).get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            var item = doc.data();
+            fecha = item.fecha.toDate().getDate() + '/' + (item.fecha.toDate().getMonth() + 1);
+            arrayTotal.push({"monto":item.monto.toFixed(2),"fecha":fecha});
+        })
+        Array.from(new Set(arrayTotal.map(x => x.fecha))).forEach(x => {
+            result.push(arrayTotal.filter(y => y.fecha === x).reduce((output,item) => {
+                let val = output[x] === undefined?0:output[x];
+                output[x] =  (parseFloat(item.monto) +  parseFloat(val)); 
+               return output;
+            },{}));
+        })
+
+        for (var prop in result) {
+            nombre = Object.keys(result[prop])[0];
+            valor =  result[prop][nombre];
+            labelsArray.push(nombre);
+            arrayValores.push(valor);
+        }
+
+        console.log(arrayValores);
+
+        new Chartist.Line('#ct1-chart', {
+            labels: labelsArray,
+            series: [arrayValores]
+        }, {
+            fullWidth: true,
+            chartPadding: {
+                right: 40
+            }
+        });
+
+    });
+
+}
+
+
+/*
+function loadDataGrafico() {
+    const db = firebase.firestore();
     var labelsArray = [];
     var dataArray = [];
     ultimaFecha = "";
@@ -102,6 +149,7 @@ function loadDataGrafico() {
             }
 
         });
+        console.log(dataArray);
 
         new Chartist.Line('#ct1-chart', {
             labels: labelsArray,
@@ -114,6 +162,7 @@ function loadDataGrafico() {
         });
     });
 }
+*/
 
 function fillTablaCompras(){
     const db2 = firebase.firestore();
@@ -129,7 +178,7 @@ function fillTablaCompras(){
             arraySimpleFiltros.push(val.filtro);
         });
 
-        db2.collection("Movimientos/").orderBy("fecha").get().then(function (querySnapshot) {
+        db2.collection("Movimientos/").orderBy("fecha","desc").limit(20).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var val = doc.data();
 
@@ -216,6 +265,7 @@ guardarGasto = function(){
                 document.getElementById("inputMonto").value = "";
                 document.getElementById("inputDescripcion").value = "";
                 fillTablaCompras();
+                loadDataGrafico();
             }).catch(function(error) {
                 console.error("Error adding document: ", error);
             })

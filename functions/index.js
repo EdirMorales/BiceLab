@@ -6,7 +6,8 @@ const app = express();
 
 
 
-
+/*
 exports.helloworld = functions.https.onRequest((request, response) => {
     response.send("Hello");
 });
+*/
