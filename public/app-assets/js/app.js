@@ -9,26 +9,23 @@ document.addEventListener("DOMContentLoaded", event =>{
     
 });
 
-// verificacion estado de usuario
+// verificacion estado
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        // Usuario logeado
         userInfoPage(user);
     }else{
-        // User no logeado.
         googleLogin();
     }
 });
 
-function googleLogin(){
+function googleLogin() {
 
-        const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithRedirect(provider).then(result => {
-            const user = result.user;
-            userInfoPage(user);
-        })
-        .catch(function(error){
-            //window.location = "/user-lock-screen.html";
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider).then(result => {
+        const user = result.user;
+        userInfoPage(user);
+    })
+        .catch(function (error) {
             console.log(error);
         })
 }
@@ -55,9 +52,7 @@ function getIndicadores(){
         document.getElementById("indvaleuro").innerText = response.euro.value;
         document.getElementById("indnomuf").innerText = response.uf.name;
         document.getElementById("indvaluf").innerText = response.uf.value;
-
         dolarHoy = response.dolar.value;
-
         fillTablaCompras();
       });
 }
@@ -70,7 +65,7 @@ function loadDataGrafico() {
     var labelsArray = [];
     var arrayValores = [];
 
-    db.collection("Movimientos/").orderBy("fecha","desc").limit(20).get().then(function (querySnapshot) {
+    db.collection("Movimientos/").orderBy("fecha","desc").get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
             var item = doc.data();
             fecha = item.fecha.toDate().getDate() + '/' + (item.fecha.toDate().getMonth() + 1);
@@ -117,7 +112,7 @@ function fillTablaCompras(){
             arraySimpleFiltros.push(val.filtro);
         });
 
-        db2.collection("Movimientos/").orderBy("fecha","desc").limit(20).get().then(function (querySnapshot) {
+        db2.collection("Movimientos/").orderBy("fecha","desc").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var val = doc.data();
 
@@ -206,7 +201,15 @@ guardarGasto = function(){
 guardarFiltro = function(){
     var filtro = document.getElementById("inputFiltro").value;
     filtro = filtro.replace(/[^a-zA-Z ]/g, "");
-    if(filtro.trim() != ""){
+    existe = false;
+    arrayFiltros.forEach(fil => {
+        if(fil[0].includes(filtro) || filtro.includes(fil[0])){
+            alert('El filtro debe ser unico');
+            existe = true;
+        }
+    });
+
+    if(filtro.trim() != "" && existe == false){
         const db = firebase.firestore();
         db.collection("Filtros").add({
             filtro: filtro.trim(),

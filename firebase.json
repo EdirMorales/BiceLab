@@ -22,10 +22,17 @@
         ]
       },
       {
-        "source": "**/*.@(jpg|jpeg|gif|png|css|xml|txt)",
+        "source": "**/*.@(jpg|jpeg|gif|png|js|css|eot|otf|ttf|ttc|woff|woff2)",
         "headers": [ {
           "key": "Cache-Control",
-          "value": "max-age=7200"
+          "value": "max-age=604800"
+        } ]
+      },
+      {
+        "source": "**/*",
+        "headers": [ {
+          "key": "Cache-Control",
+          "value": "no-cache"
         } ]
       }
     ],
