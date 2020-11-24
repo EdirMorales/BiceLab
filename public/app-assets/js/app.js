@@ -133,10 +133,13 @@ function fillTablaCompras(){
             table.destroy();
             if (!$.fn.DataTable.isDataTable('#tablaCompras')) {
                 arrayFiltros.forEach(function(element){
+                    
+                    var nf = Intl.NumberFormat();
                     content = "";
                     content += '<tr><td>' + element[0] + '</td>';
-                    content += '<td>' + element[1].toFixed(2) + '</td>';
-                    content += '<td>' + (element[1].toFixed(2) * dolarHoy).toFixed(0) + '</td>';
+                    content += '<td>' + nf.format(element[1].toFixed(2)) + '</td>';
+                    content += '<td>' + nf.format((element[1].toFixed(2) * dolarHoy).toFixed(0)) + '</td>';
+
                     arrayMail.push([element[0], element[1].toFixed(2), (element[1].toFixed(2) * dolarHoy).toFixed(0)]);
                     $('#tablaCompras').append(content);
                 })
