@@ -17,21 +17,21 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <!-- END: Firebase-->
     
-    <link rel="apple-touch-icon" href="../../../app-assets/images/favicon/apple-touch-icon-152x152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="app-assets/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/chartist-js/chartist.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/charts-chartist.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/chartist-js/chartist.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/charts-chartist.css">
     <link rel="stylesheet" type="text/css"
-        href="../app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/vendors/data-tables/css/select.dataTables.min.css">
+        href="app-assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/data-tables/css/select.dataTables.min.css">
 
     <!-- BEGIN: Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/materialize.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/style.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/page-contact.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/materialize.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/style.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/page-contact.css">
     <!-- END: Page Level CSS-->
 
 </head>
@@ -119,7 +119,6 @@
                                 <div id="idChart1" class="col s12 m12 l9">
                                     <div class="row">
 
-
                                         <div class="seaction" id="materialize-chartist">
                                             <div id="ct1-chart" class="ct-chart card">
                                                 <div class="card-content">
@@ -129,6 +128,37 @@
                                             </div>
                                         </div>
 
+                                    </div>
+
+
+                                    <div class="row">
+
+                                        <!-- formulario -->
+                                        <div class="col s12 m12 l12 card">
+                                            <div class="card-content">
+                                                <h6 class="card-title">Ingresar nuevo gasto</h6>
+                                                    
+                                                        <div class="row">
+                                                            <div class="input-field col m8 s12">
+                                                                <input id="inputDescripcion" type="text" class="validate">
+                                                                <label for="inputDescripcion">Descripción</label>
+                                                                <a class="waves-effect waves-light btn" id="btnMail" onclick="guardarGasto()">Guardar</a>
+                                                            </div>
+                                                            <div class="input-field col m4 s12">
+                                                                <input id="inputMonto" type="number" class="validate">
+                                                                <label for="inputMonto">Monto en dólares</label>
+                                                            </div>
+                                                        </div>
+                                                    
+                                                </div>
+                                        </div>
+                                        <!-- fin formulario -->
+
+                                    </div>
+
+
+
+                                    <div class="row">
 
                                         <div id="tablax" class="card card card-default scrollspy">
                                             <div class="card-content">
@@ -156,13 +186,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
+                                    </div>
+                                    <div class="row">
 
                                         <!-- formulario -->
                                         <div class="col s12 m12 l12 card">
                                                 <div class="card-content">
                                                     <h6 class="card-title">Ingresar nuevo filtro</h6>
-                                                        <form class="col s12 ">
+                                                        
                                                             <div class="row">
                                                                 <div class="input-field col m12 s12">
                                                                     <input id="inputFiltro" type="text" class="validate">
@@ -171,35 +203,15 @@
                                                                 </div>
 
                                                             </div>
-                                                        </form>
+                                                        
                                                 </div>
                                         </div>
                                         <!-- fin formulario -->
-
-                                        <!-- formulario -->
-                                        <div class="col s12 m12 l12 card">
-                                            <div class="card-content">
-                                                <h6 class="card-title">Ingresar nuevo gasto</h6>
-                                                    <form class="col s12 ">
-                                                        <div class="row">
-                                                            <div class="input-field col m8 s12">
-                                                                <input id="inputDescripcion" type="text" class="validate">
-                                                                <label for="inputDescripcion">Descripción</label>
-                                                                <a class="waves-effect waves-light btn" id="btnMail" onclick="guardarGasto()">Guardar</a>
-                                                            </div>
-                                                            <div class="input-field col m4 s12">
-                                                                <input id="inputMonto" type="number" class="validate">
-                                                                <label for="inputMonto">Monto en dólares</label>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                        </div>
-                                        <!-- fin formulario -->
-
-
 
                                     </div>
+
+
+
                                 </div>
 
                             </div>
@@ -225,16 +237,16 @@
 
 
     <!--  JS-->
-    <script src="../../../app-assets/js/vendors.min.js"></script>
+    <script src="app-assets/js/vendors.min.js"></script>
 
-    <script src="../app-assets/vendors/data-tables/js/jquery.dataTables.min.js"></script>
-    <script src="../app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../app-assets/vendors/data-tables/js/dataTables.select.min.js"></script>
+    <script src="app-assets/vendors/data-tables/js/jquery.dataTables.min.js"></script>
+    <script src="app-assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+    <script src="app-assets/vendors/data-tables/js/dataTables.select.min.js"></script>
 
-    <script src="../../../app-assets/vendors/chartist-js/chartist.min.js"></script>
-    <script src="../../../app-assets/js/scripts/charts-chartist.js"></script>
+    <script src="app-assets/vendors/chartist-js/chartist.min.js"></script>
+    <script src="app-assets/js/scripts/charts-chartist.js"></script>
 
-    <script defer src="../../../app-assets/js/app.js"></script>
+    <script defer src="app-assets/js/app.js"></script>
     <!-- JS-->
 </body>
 

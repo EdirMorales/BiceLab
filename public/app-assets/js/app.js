@@ -36,15 +36,6 @@ function googleLogin(){
 function userInfoPage(user){
     document.getElementById("nomusuario").innerText = user.displayName;
     document.getElementById("emausuario").innerText = user.email;
-
-    /*
-    document.getElementById("name").value = user.displayName;
-    document.getElementById("email").value = user.email;
-
-    $(function() {
-        M.updateTextFields();
-    });
-    */
 }
 
 function getIndicadores(){
@@ -100,8 +91,6 @@ function loadDataGrafico() {
             arrayValores.push(valor);
         }
 
-        console.log(arrayValores);
-
         new Chartist.Line('#ct1-chart', {
             labels: labelsArray,
             series: [arrayValores]
@@ -111,58 +100,8 @@ function loadDataGrafico() {
                 right: 40
             }
         });
-
-    });
-
-}
-
-
-/*
-function loadDataGrafico() {
-    const db = firebase.firestore();
-    var labelsArray = [];
-    var dataArray = [];
-    ultimaFecha = "";
-    ultimoMonto = 0;
-
-    db.collection("Movimientos/").orderBy("fecha","desc").limit(20).get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-            var item = doc.data();
-
-            fecha = item.fecha;
-            if (fecha != "" && fecha != undefined) {
-                fecha = item.fecha.toDate().getDate() + '/' + (item.fecha.toDate().getMonth() + 1);
-            };
-
-            monto = item.monto;
-
-            if (ultimaFecha != fecha) {
-
-                ultimoMonto = monto;
-                ultimaFecha = fecha;
-
-                dataArray.push(monto);
-                labelsArray.push(fecha);
-
-            } else {
-                dataArray[dataArray.length - 1] = ultimoMonto + monto;
-            }
-
-        });
-        console.log(dataArray);
-
-        new Chartist.Line('#ct1-chart', {
-            labels: labelsArray,
-            series: [dataArray]
-        }, {
-            fullWidth: true,
-            chartPadding: {
-                right: 40
-            }
-        });
     });
 }
-*/
 
 function fillTablaCompras(){
     const db2 = firebase.firestore();
@@ -187,50 +126,32 @@ function fillTablaCompras(){
                     arrayFiltros[inde][1] += val.monto;
                     cuantos += 1;
                 }
-
             });
-
-
             if ( $.fn.DataTable.isDataTable('#tablaCompras') ){
                 alert("acaaaa");
                 var table = $('#tablaCompras').DataTable();
                 table.clear();
                 table.destroy();
             }
-
             var table = $('#tablaCompras').DataTable();
             table.clear();
             table.destroy();
-    
             if (!$.fn.DataTable.isDataTable('#tablaCompras')) {
-    
                 arrayFiltros.forEach(function(element){
                     content = "";
                     content += '<tr><td>' + element[0] + '</td>';
                     content += '<td>' + element[1].toFixed(2) + '</td>';
                     content += '<td>' + (element[1].toFixed(2) * dolarHoy).toFixed(0) + '</td>';
-
                     arrayMail.push([element[0], element[1].toFixed(2), (element[1].toFixed(2) * dolarHoy).toFixed(0)]);
-        
                     $('#tablaCompras').append(content);
-        
-                    /*
-                    $('#tablaCompras').DataTable({
-                        "responsive": true,
-                        "sDom":"ltipr"
-                    });
-                    */
                 })
             }
         });
     });
 }
-
-
   
 exportToCsv = function() {
     var Results = arrayMail;
-
     var CsvString = '"sep=,"\r\n';
     Results.forEach(function(RowItem, RowIndex) {
       RowItem.forEach(function(ColItem, ColIndex) {
@@ -246,17 +167,14 @@ exportToCsv = function() {
    x.click();
 }
 
-
 guardarGasto = function(){
-
     var monto = document.getElementById("inputMonto").value;
     var descripcion = document.getElementById("inputDescripcion").value;
-
+    descripcion = descripcion.replace(/[^a-zA-Z ]/g, "");
     if(monto.trim() !="" && descripcion.trim() != ""){
-        if(monto > 0){
+        if(parseFloat(monto) > 0 && parseFloat(monto) < 999999){
             const db = firebase.firestore();
             var ahora = firebase.firestore.Timestamp.now();
-
             db.collection("Movimientos").add({
                 detalle: descripcion,
                 fecha: ahora,
@@ -271,9 +189,7 @@ guardarGasto = function(){
             })
         }else{
             document.getElementById("inputMonto").value = "";
-
         }
-        
     }else{
         $(function() {
             if(monto.trim() ==""){
@@ -288,19 +204,17 @@ guardarGasto = function(){
 }
 
 guardarFiltro = function(){
-
     var filtro = document.getElementById("inputFiltro").value;
-
+    filtro = filtro.replace(/[^a-zA-Z ]/g, "");
     if(filtro.trim() != ""){
         const db = firebase.firestore();
-
         db.collection("Filtros").add({
             filtro: filtro.trim(),
         }).then(function(){
             document.getElementById("inputFiltro").value = "";
             fillTablaCompras();
         }).catch(function(error) {
-            console.error("Error adding document: ", error);
+            console.error("Error : ", error);
         })
     }else{
         $(function() {
